@@ -2,8 +2,8 @@
 
 class HomeController {
 
-    async home(req, res) {
-        res.send('oi');
+    async index(req, res) {
+        res.json({msg: 'Oi, api funcionando'});
     }
 
 }
