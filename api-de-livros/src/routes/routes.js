@@ -8,6 +8,7 @@ const BookController = require('../controllers/BookController');
 /* get */
 router.get('/', HomeController.index);
 router.get('/books', BookController.list);
+router.get('/book/:id', BookController.findBook)
 
 
 module.exports = router;

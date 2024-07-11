@@ -5,7 +5,8 @@ class Books {
 
     async findAll() {
         try {
-            const result = await knexInstance.select().table('books').orderBy('releaseYear', 'asc');
+            const result = await knexInstance.select().table('books')
+                .orderBy('releaseYear', 'asc');
             return result;
         } catch(err) {
             throw err;
