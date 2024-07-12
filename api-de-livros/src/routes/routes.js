@@ -10,5 +10,8 @@ router.get('/', HomeController.index);
 router.get('/books', BookController.list);
 router.get('/book/:id', BookController.findBook)
 
+/* post */
+router.post('/book', BookController.create);
+
 
 module.exports = router;
