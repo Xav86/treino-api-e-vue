@@ -64,7 +64,33 @@ class Books {
         } else {
             return {status: false, err: 'O livro não existe, não podendo ser deletado.'};
         }
-    } 
+    }
+
+    async editBook(idBook, email, password, name, releaseYear, author) {
+
+        const objBook = {
+            email: email,
+            password: password,
+            name: name,
+            releaseYear: releaseYear,
+            author: author
+        }
+
+        if (idBook != undefined) {
+            try {
+                await knexInstance.update(objBook)
+                    .where({id: idBook})
+                    .table('books');
+
+                return {status: true};
+            } catch(err) {
+                return {status: false, err: `Ocorreu um erro durante a alteração: ${err}`};
+            }
+
+        } else {
+            return {status: false, err: 'O livro não existe, não podendo ser editado.'};
+        }
+    }
 
 }
 
