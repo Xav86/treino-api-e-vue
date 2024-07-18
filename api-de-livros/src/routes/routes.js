@@ -8,10 +8,13 @@ const BookController = require('../controllers/BookController');
 /* get */
 router.get('/', HomeController.index);
 router.get('/books', BookController.list);
-router.get('/book/:id', BookController.findBook)
+router.get('/book/:id', BookController.findBook);
 
 /* post */
 router.post('/book', BookController.create);
+
+/* delete */
+router.delete('/book/:id', BookController.delete);
 
 
 module.exports = router;

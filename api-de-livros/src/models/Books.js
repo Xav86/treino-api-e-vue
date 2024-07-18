@@ -22,7 +22,12 @@ class Books {
             .where('id', idBook)
             .first();
             
-            return result;
+            if (!result) {
+                return -1;
+            } else {
+                return result;
+            }
+
         } catch(err) {
             console.log('Erro ao buscar livro');
             throw err;
@@ -44,6 +49,22 @@ class Books {
             throw err;
         }
     }
+
+    async deleteBook(idBook) {
+        if (idBook != undefined) {
+            try {
+                await knexInstance.delete()
+                    .where({id: idBook})
+                    .table('books');
+                return {status: true};
+            } catch(err) {
+                return {status: false, err: `Ocorreu um erro durante a deleção: ${err}`};
+            }
+
+        } else {
+            return {status: false, err: 'O livro não existe, não podendo ser deletado.'};
+        }
+    } 
 
 }
 

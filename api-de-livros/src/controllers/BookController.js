@@ -17,7 +17,7 @@ class BookController {
 
     /* Listagem de um unico livro */
     async findBook(req, res) {
-        const {id} = req.params;
+        const { id } = req.params;
 
         if (isNaN(id)) {
             res.status(400).json({err: 'isso não é um valor valido!'})
@@ -51,6 +51,37 @@ class BookController {
 
             } catch(err) {
                 res.status(500).json({err: err, msg: 'Erro ao inserir dados'})
+            }
+        }
+
+    }
+
+    async delete(req, res) {
+        const { id } = req.params;
+
+        if (isNaN(id)) {
+            res.status(400).json({err: 'isso não é um valor valido!'})
+        } else {
+            const idBook = parseInt(id)
+            try {
+
+                const book = await Book.findOne(idBook);
+
+                if (book === -1) {
+                    res.status(404).json({msg: 'este usuário não existe'});
+                } else {
+                    console.log(book.id);
+                    const result = Book.deleteBook(book.id);
+
+                    if (result) {
+                        res.status(200).json({msg: 'Usuário deletado com sucesso'});
+                    } else {
+                        res.status(500).json({msg: 'Erro ao deletar usuário'});
+                    }
+                }
+                
+            } catch(err) {
+                res.status(500).json({err: err});
             }
         }
 
