@@ -43,7 +43,7 @@ class Books {
             if (!result) {
                 throw {msg: 'erro ao cadastrar'};
             } else {
-                return {msg: 'Usuário cadastrado com sucesso'};
+                return {msg: 'Livro cadastrado com sucesso'};
             }
         } catch(err) {
             throw err;
