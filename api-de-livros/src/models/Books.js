@@ -31,13 +31,14 @@ class Books {
 
     async insert(email, password, name, releaseYear, author) {
         try {
-            const result = await knexInstance.insert([email, password, name, releaseYear, author])
-            .table('books');
+            const result = await knexInstance.insert({email: email, password: password, name: name, releaseYear: releaseYear, author: author})
+            .into('books');
 
+            console.log(result);
             if (!result) {
-                throw 'erro ao cadastrar';
+                throw {msg: 'erro ao cadastrar'};
             } else {
-                return result
+                return {msg: 'Usuário cadastrado com sucesso'};
             }
         } catch(err) {
             throw err;
