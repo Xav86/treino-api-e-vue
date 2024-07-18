@@ -90,31 +90,29 @@ class BookController {
         const { id } = req.params;
         const { email, password, name, releaseYear, author } = req.body;
 
-
-
         if (isNaN(id)) {
             res.status(400).json({err: 'isso não é um valor valido!'})
         } else {
             const idBook = parseInt(id)
-            
+
             const book = await Book.findOne(idBook);
 
-                if (book === -1) {
-                    res.status(404).json({msg: 'este usuário não existe'});
-                } else {
-                    try {
-                        const result = Book.editBook(idBook, email, password, name, releaseYear, author);
+            if (book === -1) {
+                res.status(404).json({msg: 'este usuário não existe'});
+            } else {
+                try {
+                    const result = Book.editBook(idBook, email, password, name, releaseYear, author);
 
-                        if (result) {
-                            res.status(200).json({msg: 'Usuário alterado com sucesso'});
-                        } else {
-                            res.status(400).json({msg: 'Erro ao deletar usuário'});
-                        }
-                    } catch(err) {
-                        res.status(500).json({err: err});
+                    if (result) {
+                        res.status(200).json({msg: 'Usuário alterado com sucesso'});
+                    } else {
+                        res.status(400).json({msg: 'Erro ao deletar usuário'});
                     }
-
+                } catch(err) {
+                    res.status(500).json({err: err});
                 }
+
+            }
         }
 
     }
