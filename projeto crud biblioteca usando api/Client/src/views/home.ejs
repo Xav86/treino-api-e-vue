@@ -1,16 +1,80 @@
 <%- include('partials/header.ejs'); %>
+    <div class="container">
+        <div class="list">
+            <div class="header-list">
+                <div class="title">
+                    <h1>Lista de Livros</h1>
+                </div>
+                <div class="action">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newBook">
+                        novo livro +
+                    </button>
+                </div>
+            </div>
+            <ol>
+            <% result.forEach( item => { %>
+                <ul class="list-itens" type="disc" data-id="<%= item.id %>" data-email="<%= item.email %>" data-password="<%= item.password %>" data-name="<%= item.name %>" data-releaseYear="<%= item.releaseYear %>" data-author="<%= item.author %>">
+                    <li><%= item.id %></li>
+                    <li><%= item.email %></li>
+                    <li><%= item.password %></li>
+                    <li><%= item.name %></li>
+                    <li><%= item.releaseYear %></li>
+                    <li><%= item.author %></li>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewBook">Ações</button>
+                </ul>
+            <% }) %>
+            </ol>
+        </div>
+    </div>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="newBook" tabindex="-1" aria-labelledby="newBook" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Novo livro</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div class="create-container">
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email vinculado ao livro" required>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Senha" required>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Nome do Livro" required>
+                <input type="number" name="releaseYear" id="releaseYear" class="form-control" placeholder="Ano de lançamento">
+                <input type="text" name="author" id="author" class="form-control" placeholder="Nome do Author">
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" id="save">Salvar</button>
+            </div>
+        </div>
+        </div>
+    </div>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad pariatur non autem provident earum sunt totam voluptatibus, sequi quis corporis, quasi cumque repellendus tempora voluptas illo doloremque est sapiente facere.</p>
-    <hr>
-    <ul>
-    <% result.forEach( item => { %>
-        <li><%= item.id %></li>
-        <li><%= item.email %></li>
-        <li><%= item.password %></li>    
-        <li><%= item.name %></li>
-        <li><%= item.releaseYear %></li>
-        <li><%= item.author %></li>
-        <hr>
-    <% }) %>
-    </ol>
+    <div class="modal fade" id="viewBook" tabindex="-1" aria-labelledby="viewBook" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Editar/Deletar livro</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div class="create-container">
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email vinculado ao livro" required>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Senha" required>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Nome do Livro" required>
+                <input type="number" name="releaseYear" id="releaseYear" class="form-control" placeholder="Ano de lançamento">
+                <input type="text" name="author" id="author" class="form-control" placeholder="Nome do Author">
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" id="edit">Salvar edição</button>
+            <button type="button" class="btn btn-danger" id="edit">Excluir</button>
+            </div>
+        </div>
+        </div>
+    </div>
 <%- include('partials/footer.ejs'); %>

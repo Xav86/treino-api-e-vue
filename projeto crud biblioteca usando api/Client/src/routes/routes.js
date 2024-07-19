@@ -7,5 +7,8 @@ const HomeController = require("../controllers/HomeController");
 /* get */
 router.get('/', HomeController.home);
 
+/* post */
+router.post('/book', HomeController.create)
+
 
 module.exports = router;
