@@ -1,0 +1,16 @@
+<%- include('partials/header.ejs'); %>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad pariatur non autem provident earum sunt totam voluptatibus, sequi quis corporis, quasi cumque repellendus tempora voluptas illo doloremque est sapiente facere.</p>
+    <hr>
+    <ul>
+    <% result.forEach( item => { %>
+        <li><%= item.id %></li>
+        <li><%= item.email %></li>
+        <li><%= item.password %></li>    
+        <li><%= item.name %></li>
+        <li><%= item.releaseYear %></li>
+        <li><%= item.author %></li>
+        <hr>
+    <% }) %>
+    </ol>
+<%- include('partials/footer.ejs'); %>
