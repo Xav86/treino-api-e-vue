@@ -13,7 +13,7 @@ router.get('/book/:id', auth, BookController.findBook);
 
 /* post */
 router.post('/book', auth, BookController.create);
-router.post('/login', auth, BookController.login);
+router.post('/login', BookController.login);
 
 /* delete */
 router.delete('/book/:id', auth, BookController.delete);

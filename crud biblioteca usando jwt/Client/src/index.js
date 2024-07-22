@@ -8,6 +8,8 @@ app.set('view engine','ejs');
 
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+
 // Static
 app.use(express.static('public'));
 

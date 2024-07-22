@@ -55,3 +55,7 @@ ul {
     flex-direction: column;
     gap: 7px;
 }
+
+.card {
+    margin-top: 40px;
+}
