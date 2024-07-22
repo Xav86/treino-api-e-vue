@@ -1,5 +1,7 @@
 /* Controlador de Livros */
 const Book = require('../models/Books');
+const jwt = require('jsonwebtoken');
+require("dotenv").config();
 
 class BookController {
     
@@ -8,7 +10,7 @@ class BookController {
         try {
             const result = await Book.findAll();
 
-            res.status(200).json(result);
+            res.status(200).json({result: result, User: req.loggedUser});
         } catch(err) {
             console.log(err);
             res.status(500).json({err: err, msg: 'erro ao realizar Listagem'});
@@ -129,7 +131,15 @@ class BookController {
                 res.status(404).json({err: 'email enviado não existe no banco de dados'});
             } else {
                 if (user.password === password) {
-                    res.status(200).json({token: 'token falso'});
+
+                    jwt.sign({id: user.id, email: user.email}, process.env.SECRET, {expiresIn: '48h'}, (err, token) => {
+                        if(err) {
+                            res.status(500).json({err: err, msg: 'falha interna'});
+                        } else {
+                            res.status(200).json({token: token});
+                        }
+                    });
+                    
                 } else {
                     res.status(401).json({err: 'senha incorreta'});
                 }
