@@ -5,7 +5,8 @@
         <hr>
         <p>Número do cliente: {{ numero }}</p>
         <p>Email: {{ dados.email }}</p>
-        <p>Idade: {{ dados.idade }}</p>
+        <p v-if="showIdade === true">Idade: {{ dados.idade }}</p>
+        <p v-else>Idade ocultada</p>
         <ProdutoPage/> 
     </div>
 </template>
@@ -25,7 +26,8 @@ export default {
         }
     },
     props: {
-        dados: Object
+        dados: Object,
+        showIdade: Boolean
     }
 }
 
@@ -39,7 +41,7 @@ export default {
         gap: 7px;
         color: #f2f2f2;
         border-radius: 10px;
-        background-color: tomato;
+        background-color: #dc143c;
         padding: 10px 20px;
     }
 
