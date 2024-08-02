@@ -1,5 +1,5 @@
 <template>
-    <div class="cliente">
+    <div :class="{'cliente': !isSwap, 'cliente-swap': isSwap}">
         <h2>Cliente da página - {{ dados.nome }}</h2>
         <p>{{ descricao }}</p>
         <hr>
@@ -24,7 +24,8 @@ export default {
     data(){
         return {
             numero: 23454,
-            descricao: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium tempora quidem molestiae harum rerum ex consequuntur itaque aliquid quo id blanditiis aspernatur perferendis labore at, vel quam. Dolorum, nihil distinctio.'
+            descricao: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium tempora quidem molestiae harum rerum ex consequuntur itaque aliquid quo id blanditiis aspernatur perferendis labore at, vel quam. Dolorum, nihil distinctio.',
+            isSwap: false
         }
     },
     props: {
@@ -45,6 +46,13 @@ export default {
         border-radius: 10px;
         background-color: #dc143c;
         padding: 10px 20px;
+    }
+
+    .cliente-swap {
+        border-radius: 10px;
+        color: #2f2f2f;
+        background-color: #14dcb4;
+        padding: 20px 10px;
     }
 
 </style>
