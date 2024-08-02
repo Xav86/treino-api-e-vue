@@ -5,8 +5,10 @@
         <hr>
         <p>Número do cliente: {{ numero }}</p>
         <p>Email: {{ dados.email }}</p>
+        <!-- <p v-show="showIdade === true">Idade: {{ dados.idade }}</p> -->
         <p v-if="showIdade === true">Idade: {{ dados.idade }}</p>
-        <p v-else>Idade ocultada</p>
+        <p v-else-if="showIdade === false">Idade Ocultada</p>
+        <p v-else>Erro ao exibir idade</p>
         <ProdutoPage/> 
     </div>
 </template>
