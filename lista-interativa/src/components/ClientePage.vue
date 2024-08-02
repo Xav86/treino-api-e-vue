@@ -1,8 +1,12 @@
 <template>
     <div class="cliente">
-        <h2>Cliente da página - em um componente</h2>
-        <p>Lorem ipsum dolor sit amet.</p>
-        <ProdutoPage/>
+        <h2>Cliente da página - {{ dados.nome }}</h2>
+        <p>{{ descricao }}</p>
+        <hr>
+        <p>Número do cliente: {{ numero }}</p>
+        <p>Email: {{ dados.email }}</p>
+        <p>Idade: {{ dados.idade }}</p>
+        <ProdutoPage/> 
     </div>
 </template>
 
@@ -13,6 +17,15 @@ export default {
     name: 'ClientePage',
     components: {
         ProdutoPage
+    },
+    data(){
+        return {
+            numero: 23454,
+            descricao: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium tempora quidem molestiae harum rerum ex consequuntur itaque aliquid quo id blanditiis aspernatur perferendis labore at, vel quam. Dolorum, nihil distinctio.'
+        }
+    },
+    props: {
+        dados: Object
     }
 }
 

@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <h1>Titulo de teste</h1>
-    <ClientePage/>
+    <input type="text" v-model="dados.nome">
+    <ClientePage :dados="dados"/>
+    <ClientePage :dados="dados"/>
+    <ClientePage :dados="dados"/>
+    <ClientePage :dados="dados"/>
   </div>
 </template>
 
@@ -12,6 +16,16 @@ export default {
   name: 'App',
   components: {
     ClientePage
+  },
+  data() {
+    return {
+      nomeLegal: 'Gustavo',
+      dados: {
+        nome: 'Gustavo',
+        email: 'gustavo@gustavo.com',
+        idade: 22
+      }
+    }
   }
 }
 </script>
@@ -24,6 +38,9 @@ export default {
   }
 
   .container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
     padding:  10vh 20vw;
   }
 </style>

@@ -1,7 +1,7 @@
 /* HomeController.js */
 const axios = require('axios');
 
-var axiosConfig = {
+const axiosConfig = {
     headers: {
         Authorization: "Bearer " + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImVtYWlsIjoiY2FydGFub0BjYWV0YW5vLmNvbSIsImlhdCI6MTcyMTY3MDgwNiwiZXhwIjoxNzIxODQzNjA2fQ.ikAqOjhEeNUFH2B8tlO0SOwixXjwFGuUyDeWGgIKZE8'
     }
