@@ -1,12 +1,15 @@
 <template>
   <div class="container">
+    <h1>Cadastro:</h1>
+    <input type="text" placeholder="nome" v-model="nomeField"><br>
+    <input type="email" placeholder="email" v-model="emailField"><br>
+    <input type="number" placeholder="idade" v-model="idadeField"><br>
+    <button @click="cadastrarUsuario">cadastrar</button>
+    <hr>
     <h1>Titulo de teste</h1>
     <div v-for="(cliente, index) in clientes" :key="cliente.id">
       <h1>{{ index + 1 }}</h1>
       <ClientePage :dados="cliente"/>
-      <h4>Edição</h4>
-      <input type="text" v-model="cliente.nome">
-      <input type="text" v-model="cliente.email">
     </div>
   </div>
 </template>
@@ -21,12 +24,9 @@ export default {
   },
   data() {
     return {
-      nomeLegal: 'Gustavo',
-      dados: {
-        nome: 'Gustavo',
-        email: 'gustavo@gustavo.com',
-        idade: 22
-      },
+      nomeField: '',
+      emailField: '',
+      idadeField: 0,
       clientes: [
         {
           id: 2,
@@ -39,20 +39,16 @@ export default {
           nome: 'Caetano',
           email: 'caetano@caetano.com',
           idade: 224
-        },
-        {
-          id: 222,
-          nome: 'Calebe',
-          email: 'calebe@calebe.com',
-          idade: 222
-        },
-        {
-          id: 222,
-          nome: 'Calege',
-          email: 'calege@calege.com',
-          idade: 2222
         }
-      ]
+      ],
+    }
+  },
+  methods: {
+    cadastrarUsuario: function() {
+      this.clientes.push({id: Date.now(), nome: this.nomeField, email: this.emailField, idade: this.idadeField});
+      this.nomeField = '';
+      this.emailField = '';
+      this.idadeField = 0;
     }
   }
 }

@@ -9,6 +9,7 @@
         <p v-if="showIdade === true">Idade: {{ dados.idade }}</p>
         <p v-else-if="showIdade === false">Idade Ocultada</p>
         <p v-else>Erro ao exibir idade</p>
+        <button @click="SwapColor()"> Mudar cor </button>
         <ProdutoPage/> 
     </div>
 </template>
@@ -31,6 +32,11 @@ export default {
     props: {
         dados: Object,
         showIdade: Boolean
+    },
+    methods: {
+        SwapColor: function() {
+            this.isSwap = !this.isSwap;
+        } 
     }
 }
 
@@ -49,10 +55,13 @@ export default {
     }
 
     .cliente-swap {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
         border-radius: 10px;
         color: #2f2f2f;
         background-color: #14dcb4;
-        padding: 20px 10px;
+        padding: 10px 20px;
     }
 
 </style>
