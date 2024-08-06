@@ -4,7 +4,7 @@
         <p>{{ descricao }}</p>
         <hr>
         <p>Número do cliente: {{ numero }}</p>
-        <p>Email: {{ dados.email }}</p>
+        <p>Email: {{ tudoMaiusculo }}</p>
         <!-- <p v-show="showIdade === true">Idade: {{ dados.idade }}</p> -->
         <p v-if="showIdade === true">Idade: {{ dados.idade }}</p>
         <p v-else-if="showIdade === false">Idade Ocultada</p>
@@ -12,6 +12,7 @@
         <button @click="SwapColor()"> Mudar cor </button>
         <button @click="emitirEventodelete">Deletar</button>
         <ProdutoPage/> 
+        <p>Id legal: {{ idLegal }}</p>
     </div>
 </template>
 
@@ -45,7 +46,16 @@ export default {
         testar: function() {
             alert('Isso é um alert!');
         }
+    },
+    computed: {
+        tudoMaiusculo() {
+            return this.dados.email.toUpperCase();
+        },
+        idLegal() {
+            return (this.dados.email + this.dados.nome + this.dados.id).toUpperCase();
+        }
     }
+
 }
 
 </script>

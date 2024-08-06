@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Cadastro:</h1>
+    <h1 class="title is-1">Cadastro:</h1>
     <small v-if="deuErro === true">O nome inserido é inválido, tente novamente!</small>
     <input type="text" placeholder="nome" v-model="nomeField"><br>
     <input type="email" placeholder="email" v-model="emailField"><br>
@@ -8,15 +8,16 @@
     <button @click="cadastrarUsuario">cadastrar</button>
     <hr>
     <h1>Titulo de teste</h1>
-    <div v-for="(cliente, index) in clientes" :key="cliente.id">
-      <h1>{{ index + 1 }}</h1>
+    <div v-for="(cliente, index) in orderClientes" :key="cliente.id">
+      <h1 class="title is-4">{{ index + 1 }}</h1>
       <ClientePage :dados="cliente" :showIdade="true" @meDelete="deletarUsuario($event)"/>
     </div>
   </div>
 </template>
 
 <script>
-import ClientePage from './components/ClientePage.vue'
+import _ from 'lodash';
+import ClientePage from './components/ClientePage.vue';
 
 export default {
   name: 'App',
@@ -65,6 +66,11 @@ export default {
       const novoArray = this.clientes.filter(cliente => cliente.id != id);
       this.clientes = novoArray;
     }
+  },
+  computed: {
+    orderClientes() {
+      return _.orderBy(this.clientes,['nome'], ['asc']);
+    }
   }
 }
 </script>
@@ -80,6 +86,5 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 7px;
-    padding:  10vh 20vw;
   }
 </style>
