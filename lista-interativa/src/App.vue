@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1>Cadastro:</h1>
+    <small v-if="deuErro === true">O nome inserido é inválido, tente novamente!</small>
     <input type="text" placeholder="nome" v-model="nomeField"><br>
     <input type="email" placeholder="email" v-model="emailField"><br>
     <input type="number" placeholder="idade" v-model="idadeField"><br>
@@ -9,7 +10,7 @@
     <h1>Titulo de teste</h1>
     <div v-for="(cliente, index) in clientes" :key="cliente.id">
       <h1>{{ index + 1 }}</h1>
-      <ClientePage :dados="cliente"/>
+      <ClientePage :dados="cliente" :showIdade="true" @meDelete="deletarUsuario($event)"/>
     </div>
   </div>
 </template>
@@ -24,6 +25,7 @@ export default {
   },
   data() {
     return {
+      deuErro: false,
       nomeField: '',
       emailField: '',
       idadeField: 0,
@@ -45,10 +47,23 @@ export default {
   },
   methods: {
     cadastrarUsuario: function() {
-      this.clientes.push({id: Date.now(), nome: this.nomeField, email: this.emailField, idade: this.idadeField});
-      this.nomeField = '';
-      this.emailField = '';
-      this.idadeField = 0;
+      if (this.nomeField === '' || this.nomeField === ' ' || this.nomeField.length < 3) {
+        this.deuErro = true;
+      } else {
+        this.clientes.push({id: Date.now(), nome: this.nomeField, email: this.emailField, idade: this.idadeField});
+        this.nomeField = '';
+        this.emailField = '';
+        this.idadeField = 0;
+        this.deuErro = false;
+      }
+    },
+    deletarUsuario: function($event) {
+      // console.log('Recebendo evento');
+      // $event.component.testar();
+      // $event.component.isSwap = true;
+      const id = $event.id;
+      const novoArray = this.clientes.filter(cliente => cliente.id != id);
+      this.clientes = novoArray;
     }
   }
 }

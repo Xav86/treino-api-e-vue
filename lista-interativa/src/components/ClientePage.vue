@@ -10,6 +10,7 @@
         <p v-else-if="showIdade === false">Idade Ocultada</p>
         <p v-else>Erro ao exibir idade</p>
         <button @click="SwapColor()"> Mudar cor </button>
+        <button @click="emitirEventodelete">Deletar</button>
         <ProdutoPage/> 
     </div>
 </template>
@@ -36,7 +37,14 @@ export default {
     methods: {
         SwapColor: function() {
             this.isSwap = !this.isSwap;
-        } 
+        },
+        emitirEventodelete: function() {
+            // console.log('Evento emitido');
+            this.$emit('meDelete', {id: this.dados.id, component: this}); 
+        },
+        testar: function() {
+            alert('Isso é um alert!');
+        }
     }
 }
 
