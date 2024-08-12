@@ -9,8 +9,8 @@
         <p v-if="showIdade === true">Idade: {{ dados.idade }}</p>
         <p v-else-if="showIdade === false">Idade Ocultada</p>
         <p v-else>Erro ao exibir idade</p>
-        <button @click="SwapColor()"> Mudar cor </button>
-        <button @click="emitirEventodelete">Deletar</button>
+        <button @click="SwapColor()" class="button"> Mudar cor </button>
+        <button @click="emitirEventodelete" class="button">Deletar</button>
         <ProdutoPage/> 
         <p>Id legal: {{ idLegal }}</p>
     </div>

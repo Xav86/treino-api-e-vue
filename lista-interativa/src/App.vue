@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <h1 class="title is-1">Cadastro:</h1>
+    <h1 class="title is-1 has-text-weight-normal">Cadastro:</h1>
     <small v-if="deuErro === true">O nome inserido é inválido, tente novamente!</small>
-    <input type="text" placeholder="nome" v-model="nomeField"><br>
-    <input type="email" placeholder="email" v-model="emailField"><br>
-    <input type="number" placeholder="idade" v-model="idadeField"><br>
-    <button @click="cadastrarUsuario">cadastrar</button>
+    <input type="text" placeholder="nome" v-model="nomeField" class="input"><br>
+    <input type="email" placeholder="email" v-model="emailField" class="input"><br>
+    <input type="number" placeholder="idade" v-model="idadeField" class="input"><br>
+    <button @click="cadastrarUsuario" class="button">cadastrar</button>
     <hr>
-    <h1>Titulo de teste</h1>
+    <h1 class="title is-1 has-text-weight-normal">Titulo de teste</h1>
     <div v-for="(cliente, index) in orderClientes" :key="cliente.id">
       <h1 class="title is-4">{{ index + 1 }}</h1>
       <ClientePage :dados="cliente" :showIdade="true" @meDelete="deletarUsuario($event)"/>
@@ -87,4 +87,9 @@ export default {
     flex-direction: column;
     gap: 7px;
   }
+
+  h1 {
+    font-weight: 400;
+  }
+  
 </style>
