@@ -2,7 +2,7 @@
   <div class="about">
     <h1>This is an about page</h1>
     <input type="text" placeholder="texto" class="form-control">
-    <button class="btn btn-primary">Botão</button>
+    <button class="btn btn-primary" @click="mandarParaName">Botão</button>
     <table class="table table-hover">
   <thead>
     <tr>
@@ -55,5 +55,19 @@
     </div>
   </div>
 </div>
+
+<router-view/>
   </div>
 </template>
+
+<script>
+
+export default {
+  methods: {
+    mandarParaName: function() {
+      window.location.href = '/about/name';
+    }
+  }
+}
+
+</script>

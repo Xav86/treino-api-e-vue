@@ -2,7 +2,7 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to='/skills/1'>My Skills</router-link>
+    <router-link :to="{name: 'skills', params: {num: 200, id: 'banana'}}">My Skills</router-link>
   </nav>
   <router-view/>
 </template>

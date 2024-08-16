@@ -13,13 +13,17 @@
 
     <input type="text" placeholder="Deixe um comentário!" class="form-control"><br>
     <button class="btn btn-primary full-button" @click="alertar">Enviar</button>
+    <br>
+    <p>{{ parametroDaRotaNum }} e {{ parametroDaRotaId }}</p>
   </div>
 </template>
 
 <script>
 export default {
   created() {
-    console.log(this.$route.params.num);
+    console.log(this.$route.params);
+    this.parametroDaRotaNum = this.$route.params.num;
+    this.parametroDaRotaId = this.$route.params.id;
   },
   data() {
     return {
@@ -30,7 +34,9 @@ export default {
         NodeJs: 'NodeJs',
         TypeScipt: 'TypeScipt',
         ExpressJs: 'ExpressJs'
-      }
+      },
+      parametroDaRotaNum: 0,
+      parametroDaRotaId: ''
     }
   },
   methods: {
