@@ -1,11 +1,9 @@
-/* HomeController.js */
-
 class HomeController {
 
-    async home(req, res) {
-        res.json({msg:'OOOOOOOOOOOOOOOOOOOOOOOOOpa!'});
+    async oi(req, res) {
+        res.status(200).json({msg: 'oi'});
     }
-
+    
 }
 
 module.exports = new HomeController;
