@@ -52,6 +52,23 @@ class UserController {
         res.status(200).json({msg: 'Pegando corpo da requisição'});
     }
     
+    async edit(req, res) {
+        const { id, name, email, role } = req.body;
+
+        const result = await User.update(id, name, email, role);
+
+        if (!result) {
+            res.status(500).json({error: 'Erro interno ao editar usuário'});
+            return;
+        }
+
+        if (result.status) {
+            res.status(200).json({msg: 'Usuário atualizado com sucesso!'});
+        } else {
+            res.status(500).json({error: result.error});
+        }
+
+    }
 }
 
 module.exports = new UserController;

@@ -13,4 +13,7 @@ router.get('/user/:id', UserController.findUser);
 /* post */
 router.post('/user', UserController.create);
 
+/* put */
+router.put('/user', UserController.edit);
+
 module.exports = router;
