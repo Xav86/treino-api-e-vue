@@ -42,6 +42,25 @@ class User {
         }
     }
 
+    async findByEmail(email){
+        try {
+            const result = await knexInstance.select(['ID', 'name', 'email', 'password', 'role'])
+                .from('users')
+                .where({email: email})
+                .first();
+            
+            if (result) {
+                return result;
+            } else {
+                return undefined;
+            }
+
+        } catch(error) {
+            console.log(error);
+            return false;
+        }
+    }
+
     async findEmail(email) {
         try {
             const result = await knexInstance.select()
@@ -70,9 +89,7 @@ class User {
 
         const userEdit = {};
 
-        if (!email) {
-            return {status: false, error: 'Email vazio'};
-        } else {
+        if (email) {
             if (email != user.email) {
                 const result = await this.findEmail(email);
 
@@ -103,6 +120,31 @@ class User {
             return {status: false, error: error};
         }
 
+    }
+
+    async delete(id) {
+        const user = await this.findById(id);
+
+        if(!user) {
+            return {status: false, error: 'O usuário não existe, portanto não pode ser deletado'};
+        }
+
+        try {
+            await knexInstance.delete()
+                .where({ID: id})
+                .table('users');
+
+            return {status: true};
+        } catch(error) {
+            return {status: false, error: error};
+        }
+
+    }
+
+    async changePassword(newPassword, id, token) {
+        const hash = await bcrypt.hash(newPassword, 10);
+        await knexInstance.update({password: hash}).where({ID: id}).table('users');
+        await knexInstance.update({used: 1}).where({token: token}).table('passwordtokens');
     }
 
 }
