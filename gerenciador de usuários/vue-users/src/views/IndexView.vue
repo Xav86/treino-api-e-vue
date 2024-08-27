@@ -2,7 +2,8 @@
     <div>
         <nav>
             <router-link to="/home">Home</router-link> |
-            <router-link to="/register">Cadastro</router-link>
+            <router-link to="/register">Cadastro</router-link> |
+            <router-link to="/users">Listagem de usuários</router-link>
         </nav>
         <router-view />
     </div>
@@ -14,7 +15,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     
   nav {
     text-align: center;

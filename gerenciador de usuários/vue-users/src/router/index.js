@@ -4,6 +4,7 @@ import RegisterView from '../views/RegisterView.vue'
 import LoginView from '../views/LoginView.vue'
 import IndexView from '../views/IndexView.vue'
 import axios from 'axios'
+import UsersView from '../views/UsersView.vue'
 
 async function AdminAuth(to, from, next) {
   if (localStorage.getItem('token')) {
@@ -14,11 +15,8 @@ async function AdminAuth(to, from, next) {
       }
     }
 
-    console.log(req);
-
     try {
-      const res = await axios.post('http://localhost:4343/validate', {}, req);
-      console.log(res);
+      await axios.post('http://localhost:4343/validate', {}, req);
       next();
     } catch(error) {
       console.log(error)
@@ -45,6 +43,11 @@ const routes = [
         path: '/register',
         name: 'cadastro',
         component: RegisterView
+      },
+      {
+        path: '/users',
+        name: 'users-list',
+        component: UsersView
       }
     ],
     beforeEnter: AdminAuth
