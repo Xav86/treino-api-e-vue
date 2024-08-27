@@ -132,7 +132,7 @@ class UserController {
 
         } else {
 
-            res.status(406).json({status: false, err: 'usuário não existe mo sistema!'});
+            res.status(406).json({status: false, error: 'campo não preenchido ou usuário não existe mo sistema!'});
 
         }
 

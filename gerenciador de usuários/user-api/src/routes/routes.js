@@ -12,10 +12,11 @@ router.get('/user', AdminAuth, UserController.listUsers);
 router.get('/user/:id', AdminAuth, UserController.findUser);
 
 /* post */
-router.post('/user', AdminAuth, UserController.create);
+router.post('/user', UserController.create);
 router.post('/recoverpassword', UserController.recoverPassword);
 router.post('/changepassword', UserController.changePassword);
 router.post('/login', UserController.login);
+router.post('/validate', AdminAuth, HomeController.validate);
 
 /* put */
 router.put('/user', AdminAuth, UserController.edit);
