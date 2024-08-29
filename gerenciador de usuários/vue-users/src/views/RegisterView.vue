@@ -37,7 +37,7 @@
                 password: data.password
             });
             alert('Usuário cadastrado com sucesso!')
-            this.$router.push({name: 'home'})
+            this.$router.push({name: 'UsersView'})
         } catch(error) {
             this.error = error.response.data.error;
         }   
